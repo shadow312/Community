@@ -6,6 +6,7 @@
 		}
 		</style>
 		
+		
 		 <!--<apex:image url="{!URLFOR($Resource.MyStyles, '/imageStyle/images/Logo1.jpg')}" style="background-image"/>-->
 		<apex:pageBlock >
 		    <apex:outputLabel >Username :</apex:outputLabel>   
