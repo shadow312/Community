@@ -1,22 +1,21 @@
-<apex:page showHeader="false" sidebar="false" standardStylesheets="false" >  
-<apex:form >
-
-<style>
-body  {
-    background-image: url("{!URLFOR($Resource.MyStyles, '/imageStyle/images/Logo1.jpg')}");
-    
-}
-</style>
-
- 
- <!--<apex:image url="{!URLFOR($Resource.MyStyles, '/imageStyle/images/Logo1.jpg')}" style="background-image"/>-->
-<apex:pageBlock >
-<apex:pageBlockSection >
-    <apex:outputLabel >Username :</apex:outputLabel>   
-    <apex:inputText />
-</apex:pageBlockSection>
-    
-</apex:pageBlock>
-
-</apex:form>
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" controller="SiteLoginController">  
+	<apex:form >
+		<style>
+		body  {
+		    background-image: url("{!URLFOR($Resource.MyStyles, '/imageStyle/images/Logo1.jpg')}");    
+		}
+		</style>
+		
+		 <!--<apex:image url="{!URLFOR($Resource.MyStyles, '/imageStyle/images/Logo1.jpg')}" style="background-image"/>-->
+		<apex:pageBlock >
+		    <apex:outputLabel >Username :</apex:outputLabel>   
+		    <apex:inputText id="uname" label="Username :" value="{!username}"/>
+		    
+		    <apex:outputLabel >Password :</apex:outputLabel>   
+		    <apex:inputText id="pwd" label="Password :" value="{!password}"/>
+		    
+		    <apex:commandButton value="Login" action="{!Processlogin}"/>
+		    
+		</apex:pageBlock>
+	</apex:form>
 </apex:page>
