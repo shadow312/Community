@@ -13,6 +13,7 @@
     });
     </script>
     
+    
     <!-- <style>
          body  {
             background-image: url("{!URLFOR($Resource.MyStyles, '/imageStyle/images/Background1.jpg')}");    
