@@ -1,0 +1,127 @@
+<apex:page sidebar="false" showHeader="false" controller="SubmissionEntryController" standardStylesheets="false" docType="HTML-5.0">
+    
+    <script type="text/javascript">
+        $('ssn').keyup(function() {
+        var val = this.value.replace(/\D/g, '');
+        var newVal = '';
+        while (val.length > 3) {
+          newVal += val.substr(0, 3) + '-';
+          val = val.substr(3);
+        }
+        newVal += val;
+        this.value = newVal;
+    });
+    </script>
+    
+    <!-- <style>
+         body  {
+            background-image: url("{!URLFOR($Resource.MyStyles, '/imageStyle/images/Background1.jpg')}");    
+        }
+
+    </style> -->
+
+    <apex:form style="list-style:none; padding-left:200px; padding-top:150px">
+    
+    <apex:actionFunction name="sendval" action="{!summary}">
+        <apex:param name="firstname" value="" assignTo="{!fname}" />
+        <apex:param name="lastname" value="" assignTo="{!lname}" />
+        <apex:param name="gender" value="" assignTo="{!Gender}" />
+    </apex:actionFunction>
+    
+    <apex:actionFunction name="addborwr" action="{!addcobor}" reRender="borrower"/>
+    
+        <apex:pageBlock >
+            <li>
+                <apex:outputPanel >
+                    <apex:outputText value="First Name :" />
+                    <apex:outputPanel style="padding-left:35px">
+                        <apex:inputText id="firstname" value="{!fname}" required="true"/>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </li>
+            <br/>
+            <li>
+                <apex:outputPanel >
+                    <apex:outputText value="Last Name :" />
+                    <apex:outputPanel style="padding-left:37px">
+                        <apex:inputText id="lastname" value="{!lname}" required="true"/>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </li>
+            <br/>
+            <li>
+                <apex:outputPanel >
+                    <apex:outputText value="DOB :" />
+                    <apex:outputPanel style="padding-left:73px">
+                        <apex:inputText id="dob" value="{!dob}" required="true"/>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </li>
+            <br/>
+            <li>
+                <apex:outputPanel >
+                    <apex:outputText value="Gender :" />
+                    <apex:outputPanel style="padding-left:59px">
+                        <apex:inputText id="gender" value="{!Gender}" required="true"/>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </li>
+            <br/>
+            <li>
+                <apex:outputPanel >
+                    <apex:outputText id="ssnLabel" style=".style-2" value="SSN: " />
+                    <apex:outputPanel style="padding-left:77px">
+                        <apex:inputText id="ssn" value="{!ssn}" maxlength="11" html-autocomplete="off" style=".style-2" /> 
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </li>
+        </apex:pageBlock>
+            
+        <apex:repeat id="coborrower" rendered="{if(hasCobor), true, false}">
+            <li>
+                <apex:outputPanel >
+                    <apex:outputText value="First Name :" />
+                    <apex:outputPanel style="padding-left:35px">
+                        <apex:inputText id="firstname" value="{!fname}" required="true"/>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </li>
+            <br/>
+            <li>
+                <apex:outputPanel >
+                    <apex:outputText value="Last Name :" />
+                    <apex:outputPanel style="padding-left:37px">
+                        <apex:inputText id="lastname" value="{!lname}" required="true"/>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </li>
+            <br/>
+            <li>
+                <apex:outputPanel >
+                    <apex:outputText value="Gender :" />
+                    <apex:outputPanel style="padding-left:59px">
+                        <apex:inputText id="gender" value="{!Gender}" required="true"/>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </li>
+            <br/>
+            <li>
+                <apex:outputPanel >
+                    <apex:outputText id="ssnLabel" style=".style-2" value="SSN: " />
+                    <apex:outputPanel style="padding-left:77px">
+                        <apex:inputText id="ssn" value="{!ssn}" maxlength="11" html-autocomplete="off" style=".style-2" /> 
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </li>
+        </apex:repeat>
+        
+        <apex:panelGroup >    
+            <apex:outputPanel layout="block">
+                <button type="button" id="" onClick="addborwr();">Add Borrower</button>
+            </apex:outputPanel>
+            <apex:outputPanel layout="block" styleClass="">
+                <button type="button" id="" onClick="sendval();">Submit</button>
+            </apex:outputPanel>
+        </apex:panelGroup>
+    </apex:form>
+</apex:page>
