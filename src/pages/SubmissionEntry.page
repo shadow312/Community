@@ -34,7 +34,6 @@
         <apex:param name="gender" value="" assignTo="{!Gender}" />
     </apex:actionFunction>
     
-    
     <apex:actionFunction name="addborwr" action="{!addcobor}" reRender="borrower"/>
     
         <apex:pageBlock >
