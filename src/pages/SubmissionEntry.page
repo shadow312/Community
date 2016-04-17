@@ -11,8 +11,14 @@
         newVal += val;
         this.value = newVal;
     });
+    $(function() {
+    $( "#birthdate" ).datepicker();
+  });
     </script>
-    
+	  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"></link>
+	  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	  <link rel="stylesheet" href="/resources/demos/style.css"></link>
     <!-- <style>
          body  {
             background-image: url("{!URLFOR($Resource.MyStyles, '/imageStyle/images/Background1.jpg')}");    
@@ -53,7 +59,7 @@
                 <apex:outputPanel >
                     <apex:outputText value="DOB :" />
                     <apex:outputPanel style="padding-left:73px">
-                        <apex:inputText id="dob" value="{!dob}" required="true"/>
+                        <apex:inputText id="birthdate" value="{!dob}" required="true"/>
                     </apex:outputPanel>
                 </apex:outputPanel>
             </li>
@@ -75,8 +81,22 @@
                     </apex:outputPanel>
                 </apex:outputPanel>
             </li>
-        </apex:pageBlock>
+            <br/>
             
+            <apex:outputPanel layout="pageDirection" >
+            	<apex:outputText id="raceLabel" value="Race (check all applicable): "/>
+                <apex:selectCheckboxes value="{!race}" layout="pageDirection" id="raceList" style="white-space:nowrap" onclick="deselectAllRace(this.id);">
+                    <apex:selectOption itemValue="American Indian Or Alaska Native" itemLabel="American Indian or Alaskan Native" id="Indian" />
+                    <apex:selectOption itemValue="Asian" itemLabel="Asian" id="Asian" />
+                    <apex:selectOption itemValue="Black Or African American" itemLabel="Black or African American" id="African" />
+                    <apex:selectOption itemValue="Native Hawaiian Or Other Pacific Islander" itemLabel="Native Hawaiian or Other Pacific Islander" id="Hawaiian" />
+                    <apex:selectOption itemValue="White" itemLabel="White" id="White" />
+                    <apex:selectOption itemValue="Information Not Provided" itemLabel="Information Not Provided" id="NotProvided" />
+                    <apex:selectOption itemValue="Not Applicable" itemLabel="Not Applicable" id="NA" />
+                </apex:selectCheckboxes>
+           </apex:outputPanel>
+        </apex:pageBlock>
+        
         <apex:repeat id="coborrower" rendered="{if(hasCobor), true, false}">
             <li>
                 <apex:outputPanel >
@@ -114,14 +134,18 @@
                 </apex:outputPanel>
             </li>
         </apex:repeat>
-        
-        <apex:panelGroup >    
+
+        <br/>
+        <apex:panelGroup >  
+        	<li>  
             <apex:outputPanel layout="block">
                 <button type="button" id="" onClick="addborwr();">Add Borrower</button>
             </apex:outputPanel>
+            <br/>
             <apex:outputPanel layout="block" styleClass="">
                 <button type="button" id="" onClick="sendval();">Submit</button>
             </apex:outputPanel>
+            </li>
         </apex:panelGroup>
     </apex:form>
 </apex:page>
