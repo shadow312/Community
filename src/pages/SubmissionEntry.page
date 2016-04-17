@@ -36,6 +36,7 @@
     
     <apex:actionFunction name="addborwr" action="{!addcobor}" reRender="borrower"/>
     
+    
         <apex:pageBlock >
             <li>
                 <apex:outputPanel >
